@@ -1,0 +1,46 @@
+<!-- Describe task in general -->
+
+<p>
+    Given two strings and a permissible number of character differences, determine if the strings can be considered approximately equal.  
+</p>
+
+<!-- <p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p> -->
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> Three arguments: two strings <span translate="no">(str{% if is_js %}ing{% endif %})</span> and one integer <span translate="no">({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Output:</strong> Logic value <span translate="no">(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <ul>
+        <li><i>spell-checking algorithms where slight differences can be ignored;</i></li>
+        <li><i>searching algorithms in databases to find entries that closely match the query;</i></li>
+        <li><i>DNA sequence matching where certain differences might be allowed.</i></li> 
+    </ul>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Precondition:</strong>
+    <ul>
+    <li><i>0 <= threshold <= max(len(str1), len(str2)).</i></li>
+    </ul>
+</p>
