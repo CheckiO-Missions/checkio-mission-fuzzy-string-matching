@@ -1,0 +1,122 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            Catch an idea 💡! Iterate over the longer length and decrease <b class="code">threshold</b> each time the characters on the same index are not equal (or absent). At the end, return if the  <b class="code">threshold</b> was enough (>=0).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Find longer length of given strings with function <b class="code">Math.max()</b> and property <b class="code">string.length</b>.
+        </p>
+        <pre class="brush: javascript">
+Math.max(str1.length, str2.length)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What to do next?
+    </div>
+    <div class="answer">
+        <p>
+            Iterate over the range of longer length, using <b class="code">for</b> loop.
+        </p>
+        <pre class="brush: javascript">
+for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I still need a hint.
+    </div>
+    <div class="answer">
+        <p>
+            Compare characters of both strings at the same index and decrease <b class="code">threshold</b> each time when they are not equal.
+        </p>
+        <pre class="brush: javascript">
+if (str1[i] != str2[i]) --threshold
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What if the lengths are not the same.
+    </div>
+    <div class="answer">
+        <p>
+            Yes. It's a good question. In this case indexing returns <b class="code">undefined</b>. If the character is absent it's still a difference, so you need to decrease <b class="code">threshold</b> as well.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all previous hints, check if <b class="code">threshold</b> was enough (>=0) and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+        if (str1[i] != str2[i]) --threshold;
+    }
+    return threshold >= 0;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Javascript Hero!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            Here recursion is used to slice off the first characters and call the same function again with shorter strings. You also need to check additional cases
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    if (threshold < 0) return false;
+    
+    if (!str1 || !str2) return str1.length + str2.length <= threshold;
+
+    if (str1[0] === str2[0]) return fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold);
+
+    return fuzzyStringMatch(str1.slice(1), str2, threshold - 1) ||
+           fuzzyStringMatch(str1, str2.slice(1), threshold - 1) ||
+           fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold - 1);
+}
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it 👍!
+    </div>
+</div>
+</body>
