@@ -1,0 +1,123 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Attrapez une idée 💡! Itérer sur la plus grande longueur et diminuer <b class="code">threshold</b> à chaque fois que les caractères sur le même indice ne sont pas égaux (ou absents). A la fin, retournez si le <b class="code">threshold</b> était suffisant (&gt;=0).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, de quoi dois-je partir?
+    </div>
+    <div class="answer">
+        <p>
+            Trouvez la plus grande longueur des chaînes données avec les fonctions <b class="code">max()</b> et <b class="code">len()</b>.
+        </p>
+        <pre class="brush: python">
+max(len(str1), len(str2))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            Interrogez la plage de longueur supérieure à l'aide de la boucle <b class="code">for</b>.
+        </p>
+        <pre class="brush: python">
+for i in range(max(len(str1), len(str2))):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai encore besoin d'un indice.
+    </div>
+    <div class="answer">
+        <p>
+            Comparez les caractères des deux chaînes au même index et diminuez <b class="code">threshold</b> à chaque fois qu'ils ne sont pas égaux.
+        </p>
+        <pre class="brush: python">
+if str1[i]!= str2[i]: threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que se passe-t-il si les longueurs ne sont pas les mêmes?
+    </div>
+    <div class="answer">
+        <p>
+            Oui. C'est une bonne question. Utilisez <a target="_blank" href="https://www.w3schools.com/python/python_try_except.asp">try/except</a> pour rattraper <b class="code">IndexError</b>. Si le caractère est absent, il y a toujours une différence, vous devez donc également diminuer <b class="code">threshold</b>.
+        </p>
+        <pre class="brush: python">
+try:
+    if str1[i]!= str2[i]: threshold -= 1
+except IndexError:
+    threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de joindre tous les indices précédents, de vérifier si <b class="code">threshold</b> est suffisant (&gt;=0) et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+
+    for i in range(max(len(str1), len(str2))):
+        try:
+            if str1[i]!= str2[i]: threshold -= 1
+        except IndexError:
+            threshold -= 1
+        
+    return threshold>= 0
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Utilisez <b class="code">zip_longest()</b> du module <b class="code">itertools</b> avec l'argument <b class="code">fillvalue</b> pour comparer des paires de caractères au même index et additionner les nombres de différence.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from itertools import zip_longest
+
+
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+    
+    return sum(i!= j for i, j in zip_longest(str1, str2, fillvalue="+")) <= threshold
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>
