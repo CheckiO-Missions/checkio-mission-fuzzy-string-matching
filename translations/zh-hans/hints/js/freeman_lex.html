@@ -1,0 +1,122 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            抓住一个点子💡！对较长的长度进行迭代，每当同一索引上的字符不相等（或不存在）时，就减少<b class="code">threshold</b> 。最后，如果<b class="code">threshold</b> 足够（&gt;=0），则返回。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            使用函数<b class="code">Math.max()</b> 和属性<b class="code">string.length</b> 查找给定字符串的较长长度。
+        </p>
+        <pre class="brush: javascript">
+Math.max(str1.length, str2.length)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步该怎么做？
+    </div>
+    <div class="answer">
+        <p>
+            使用<b class="code">for</b> 循环迭代长度较长的范围。
+        </p>
+        <pre class="brush: javascript">
+for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我还需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            在同一索引下比较两个字符串的字符，如果不相等，则每次减少<b class="code">threshold</b> 。
+        </p>
+        <pre class="brush: javascript">
+if (str1[i]!= str2[i]) --threshold
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如果长度不一样怎么办？
+    </div>
+    <div class="answer">
+        <p>
+            是的。这是个好问题。在这种情况下，索引会返回<b class="code">undefined</b> 。如果该字符不存在，则仍然存在差异，因此您还需要减少<b class="code">threshold</b> 。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            你只需将之前的所有提示连接起来，检查<b class="code">threshold</b> 是否足够（&gt;=0），然后将代码封装成函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+        if (str1[i]!= str2[i]) --threshold;
+    }
+    return threshold>= 0;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        告诉我更多解决方案！<br />
+        因为我想成为真正的 🥇 Javascript 英雄！
+    </div>
+    <div class="answer">
+        <p>当然，抓紧时间！</p>
+        <p>
+            这里使用递归来切掉第一个字符，然后用更短的字符串再次调用相同的函数。您还需要检查其他情况
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    if (threshold < 0) return false;
+    
+    if (!str1 ||!str2) return str1.length + str2.length <= threshold;
+
+    if (str1[0] === str2[0]) return fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold);
+
+    return fuzzyStringMatch(str1.slice(1), str2, threshold - 1) ||
+           fuzzyStringMatch(str1, str2.slice(1), threshold - 1) ||
+           fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold - 1);
+}
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>
