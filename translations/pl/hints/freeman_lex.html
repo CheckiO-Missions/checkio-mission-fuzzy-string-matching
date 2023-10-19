@@ -1,0 +1,123 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę złapać pomysł 💡! Iterować po dłuższej długości i zmniejszać <b class="code">threshold</b> za każdym razem, gdy znaki na tym samym indeksie nie są równe (lub nieobecne). Na koniec proszę zwrócić, jeśli <b class="code">threshold</b> było wystarczające (&gt;=0).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Proszę znaleźć dłuższe ciągi znaków za pomocą funkcji <b class="code">max()</b> i <b class="code">len()</b>.
+        </p>
+        <pre class="brush: python">
+max(len(str1), len(str2))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co robić dalej?
+    </div>
+    <div class="answer">
+        <p>
+            Proszę wykonać iterację po zakresie o większej długości, używając pętli <b class="code">for</b>.
+        </p>
+        <pre class="brush: python">
+for i in range(max(len(str1), len(str2))):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nadal potrzebuję podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę porównać znaki obu ciągów w tym samym indeksie i zmniejszyć <b class="code">threshold</b> za każdym razem, gdy nie są równe.
+        </p>
+        <pre class="brush: python">
+if str1[i]!= str2[i]: threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co jeśli długości nie są takie same?
+    </div>
+    <div class="answer">
+        <p>
+            Tak. To dobre pytanie. Proszę użyć <a target="_blank" href="https://www.w3schools.com/python/python_try_except.asp">try/except</a>, aby złapać <b class="code">IndexError</b>. Jeśli znak jest nieobecny, to nadal jest różnica, więc musi Pan również zmniejszyć <b class="code">threshold</b>.
+        </p>
+        <pre class="brush: python">
+try:
+    if str1[i]!= str2[i]: threshold -= 1
+except IndexError:
+    threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak więc powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć wszystkie poprzednie podpowiedzi, sprawdzić, czy <b class="code">threshold</b> było wystarczające (&gt;=0) i zawinąć kod w wyrażenie funkcyjne. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+
+    for i in range(max(len(str1), len(str2))):
+        try:
+            if str1[i]!= str2[i]: threshold -= 1
+        except IndexError:
+            threshold -= 1
+        
+    return threshold>= 0
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwą 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę łapać!</p>
+        <p>
+            Proszę użyć <b class="code">zip_longest()</b> z modułu <b class="code">itertools</b> z argumentem <b class="code">fillvalue</b>, aby porównać pary znaków o tym samym indeksie i zsumować liczby różnic.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from itertools import zip_longest
+
+
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+    
+    return sum(i!= j for i, j in zip_longest(str1, str2, fillvalue="+")) <= threshold
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>
