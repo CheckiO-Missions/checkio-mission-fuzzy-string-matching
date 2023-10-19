@@ -1,0 +1,46 @@
+<!-- Describe task in general -->
+
+<p>
+    Étant donné deux chaînes de caractères et un nombre admissible de différences de caractères, déterminez si les chaînes peuvent être considérées comme approximativement égales.  
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}fuzzy-string.png" alt="example" style="max-height: 200px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Trois arguments: deux chaînes de caractères <span>(str{% if is_js %}ing{% endif %})</span> et un entier <span>({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> Valeur logique <span>(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+
+    <strong>Comment on l'utilise:</strong>
+    <ul>
+        <li><i>algorithmes de vérification orthographique où de légères différences peuvent être ignorées;</i></li>
+        <li><i>algorithmes de recherche dans les bases de données pour trouver les entrées qui correspondent le mieux à la requête;</i></li>
+        <li><i>Correspondance des séquences d'ADN où certaines différences peuvent être autorisées.</i></li> 
+    </ul>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Condition préalable:</strong>
+    <ul>
+    <li><i>0 &lt;= seuil &lt;= max(len(str1), len(str2)).</i></li>
+    </ul>
+</p>
