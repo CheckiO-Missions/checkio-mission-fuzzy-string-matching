@@ -1,0 +1,46 @@
+<!-- Describe task in general -->
+
+<p>
+    给定两个字符串和允许的字符差异数，判断这两个字符串是否可以被视为近似相等。  
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}fuzzy-string.png" alt="example" style="max-height: 200px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>输入</strong>三个参数：两个字符串 <span>(str{% if is_js %}ing{% endif %})</span>和一个整数 <span>({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+   <strong>输出：</strong>逻辑值 <span>(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+
+<p>
+    <strong>示例</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+
+    <strong>如何使用：</strong>
+    <ul>
+        <li><i>拼写检查算法，可忽略细微差别；</i></li>
+        <li><i>数据库中的搜索算法，用于查找与查询结果非常匹配的条目；</i></li>
+        <li><i>允许存在某些差异的 DNA 序列匹配。</i></li> 
+    </ul>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>前提条件：</strong>
+    <ul>
+    <li><i>0 &lt;= threshold &lt;= max(len(str1)，len(str2))。</i></li>
+    </ul>
+</p>

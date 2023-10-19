@@ -1,0 +1,123 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            抓住一个点子💡！对较长的长度进行迭代，每当同一索引上的字符不相等（或不存在）时，就减少<b class="code">threshold</b> 。最后，如果<b class="code">threshold</b> 足够（&gt;=0），则返回。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            使用函数<b class="code">max()</b> 和<b class="code">len()</b> 查找给定字符串的较长长度。
+        </p>
+        <pre class="brush: python">
+max(len(str1), len(str2))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步该做什么？
+    </div>
+    <div class="answer">
+        <p>
+            使用<b class="code">for</b> 循环迭代长度较长的范围。
+        </p>
+        <pre class="brush: python">
+for i in range(max(len(str1), len(str2))):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我还需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            在同一索引下比较两个字符串的字符，如果不相等，则每次减少<b class="code">threshold</b> 。
+        </p>
+        <pre class="brush: python">
+if str1[i]!= str2[i]: threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如果长度不一样怎么办？
+    </div>
+    <div class="answer">
+        <p>
+            是的。这是个好问题。使用<a target="_blank" href="https://www.w3schools.com/python/python_try_except.asp">try/except</a> 赶上<b class="code">IndexError</b> 。如果字符不存在，则仍然存在差异，因此还需要减少<b class="code">threshold</b> 。
+        </p>
+        <pre class="brush: python">
+try:
+    if str1[i]!= str2[i]: threshold -= 1
+except IndexError:
+    threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            你只需将之前的所有提示连接起来，检查<b class="code">threshold</b> 是否足够（&gt;=0），然后将代码封装成函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+
+    for i in range(max(len(str1), len(str2))):
+        try:
+            if str1[i]!= str2[i]: threshold -= 1
+        except IndexError:
+            threshold -= 1
+        
+    return threshold>= 0
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        告诉我更多解决方案！<br />
+        因为我想成为一个真正的 🥇 Python Ninnjaa！
+    </div>
+    <div class="answer">
+        <p>当然，抓紧时间！</p>
+        <p>
+            使用<b class="code">itertools</b> 模块中的<b class="code">zip_longest()</b> 和<b class="code">fillvalue</b> 参数，比较同一索引下的字符对，并求和差值。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from itertools import zip_longest
+
+
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+    
+    return sum(i!= j for i, j in zip_longest(str1, str2, fillvalue="+")) <= threshold
+        </pre>
+        </div>
+        <p>点击任务菜单中的<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>
