@@ -1,0 +1,122 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Iterieren Sie über die längere Länge und verringern Sie <b class="code">threshold</b> jedes Mal, wenn die Zeichen auf demselben Index nicht gleich sind (oder fehlen). Geben Sie am Ende zurück, wenn die <b class="code">threshold</b> ausreichend war (&gt;=0).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Finden Sie mit der Funktion <b class="code">Math.max()</b> und der Eigenschaft <b class="code">string.length</b> die größere Länge der gegebenen Zeichenketten.
+        </p>
+        <pre class="brush: javascript">
+Math.max(str1.length, str2.length)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Iterieren Sie über den längeren Bereich, indem Sie die Schleife <b class="code">for</b> verwenden.
+        </p>
+        <pre class="brush: javascript">
+for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Vergleichen Sie die Zeichen beider Strings am gleichen Index und verringern Sie <b class="code">threshold</b> jedes Mal, wenn sie nicht gleich sind.
+        </p>
+        <pre class="brush: javascript">
+if (str1[i]!= str2[i]) --threshold
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was, wenn die Längen nicht gleich sind.
+    </div>
+    <div class="answer">
+        <p>
+            Ja. Das ist eine gute Frage. In diesem Fall liefert die Indizierung <b class="code">undefined</b>. Wenn das Zeichen nicht vorhanden ist, ist es immer noch ein Unterschied, also müssen Sie auch <b class="code">threshold</b> verringern.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise zusammenfügen, prüfen, ob <b class="code">threshold</b> ausreicht (&gt;=0) und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    for (let i = 0; i < Math.max(str1.length, str2.length); ++i) {
+        if (str1[i]!= str2[i]) --threshold;
+    }
+    return threshold>= 0;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Javascript-Held sein!
+    </div>
+    <div class="answer">
+        <p>Klar, schnappen Sie es sich!</p>
+        <p>
+            Hier wird eine Rekursion verwendet, um die ersten Zeichen abzuschneiden und die gleiche Funktion mit kürzeren Zeichenfolgen erneut aufzurufen. Sie müssen auch zusätzliche Fälle überprüfen
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function fuzzyStringMatch(str1: string, str2: string, threshold: number): boolean {
+
+    if (threshold < 0) return false;
+    
+    if (!str1 ||!str2) return str1.length + str2.length <= threshold;
+
+    if (str1[0] === str2[0]) return fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold);
+
+    return fuzzyStringMatch(str1.slice(1), str2, threshold - 1) ||
+           fuzzyStringMatch(str1, str2.slice(1), threshold - 1) ||
+           fuzzyStringMatch(str1.slice(1), str2.slice(1), threshold - 1);
+}
+        </pre>
+        </div>
+        <p>Klicken Sie im Missionsmenü auf <b>Best Solutions</b> und sehen Sie sich viele weitere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
