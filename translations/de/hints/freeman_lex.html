@@ -1,0 +1,123 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Iterieren Sie über die längere Länge und verringern Sie <b class="code">threshold</b> jedes Mal, wenn die Zeichen auf demselben Index nicht gleich sind (oder fehlen). Geben Sie am Ende zurück, wenn die <b class="code">threshold</b> ausreichend war (&gt;=0).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Finden Sie die längere Länge von gegebenen Zeichenketten mit den Funktionen <b class="code">max()</b> und <b class="code">len()</b>.
+        </p>
+        <pre class="brush: python">
+max(len(str1), len(str2))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Iterieren Sie über den längeren Bereich, indem Sie die Schleife <b class="code">for</b> verwenden.
+        </p>
+        <pre class="brush: python">
+for i in range(max(len(str1), len(str2))):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Vergleichen Sie die Zeichen beider Strings am gleichen Index und verringern Sie <b class="code">threshold</b> jedes Mal, wenn sie nicht gleich sind.
+        </p>
+        <pre class="brush: python">
+if str1[i]!= str2[i]: threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was, wenn die Längen nicht gleich sind.
+    </div>
+    <div class="answer">
+        <p>
+            Ja. Das ist eine gute Frage. Verwenden Sie <a target="_blank" href="https://www.w3schools.com/python/python_try_except.asp">try/except</a>, um <b class="code">IndexError</b> abzufangen. Wenn das Zeichen nicht vorhanden ist, ist es immer noch ein Unterschied, also müssen Sie auch <b class="code">threshold</b> verringern.
+        </p>
+        <pre class="brush: python">
+try:
+    if str1[i]!= str2[i]: threshold -= 1
+except IndexError:
+    threshold -= 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise zusammenfügen, prüfen, ob <b class="code">threshold</b> ausreicht (&gt;=0) und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+
+    for i in range(max(len(str1), len(str2))):
+        try:
+            if str1[i]!= str2[i]: threshold -= 1
+        except IndexError:
+            threshold -= 1
+        
+    return threshold>= 0
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Python Ninnjaa sein!
+    </div>
+    <div class="answer">
+        <p>Klar, schnapp sie dir!</p>
+        <p>
+            Verwenden Sie <b class="code">zip_longest()</b> aus dem Modul <b class="code">itertools</b> mit dem Argument <b class="code">fillvalue</b>, um Paare von Zeichen mit demselben Index zu vergleichen und die Anzahl der Unterschiede zu summieren.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from itertools import zip_longest
+
+
+def fuzzy_string_match(str1: str, str2: str, threshold: int) -> bool:
+    
+    return sum(i!= j for i, j in zip_longest(str1, str2, fillvalue="+")) <= threshold
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Missionsmenü und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
