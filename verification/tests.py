@@ -48,5 +48,9 @@ TESTS = {
             "input": ["fuzzy", "fuzy", 2],
             "answer": True
         },
+        {
+            "input": ["apple", "apples", 0],
+            "answer": False
+        },
     ]
 }
